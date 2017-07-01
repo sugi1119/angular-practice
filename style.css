@@ -1,0 +1,15 @@
+li.small-image{
+  width: 20%;
+}
+
+section{
+  margin-top: 0.5em;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+  background-color: #b73394;
+  color: white;
+}
+
+.nav-pills>li>a{
+  color: #b73394;
+}

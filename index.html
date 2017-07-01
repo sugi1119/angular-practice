@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="gemStore">
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/style.css">
+
+</head>
+<body class="container" ng-controller="StoreController as store">
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="product in store.products" ng-hide="product.soldOut">
+      <h3>
+        {{product.name}}
+        <em class="pull-right">{{product.price | currency}}</em>
+      </h3>
+      <!-- image gallery -->
+      <!-- ng-show : if true =>show -->
+      <div class="gallery" ng-show=product.images.length>
+        <div class="img-wrap">
+          <img ng-src={{product.images[0]}}/>
+        </div>
+        <ul class="img-thumbnail clearfix">
+          <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+            <img ng-src={{image}}/>
+          </li>
+        </ul>
+      </div>
+      <button type="button" class="btn btn-primary" ng-show="product.canPurchase">Add to Cart</button>
+
+      <section ng-controller="PanelController as panel">
+        <ul class="nav nav-pills">
+          <li ng-class="{active: panel.isSelected(1)}">
+            <a href ng-click="panel.selectTab(1)">Descriptions</a>
+          </li>
+          <li ng-class="{active: panel.isSelected(2)}">
+            <a href ng-click="panel.selectTab(2)">Specifications</a>
+          </li>
+          <li ng-class="{active: panel.isSelected(3)}">
+            <a href ng-click="panel.selectTab(3)">Reviews</a>
+          </li>
+        </ul>
+        <div class="panel" ng-show="panel.isSelected(1)">
+          <h4>Description</h4>
+          <p>{{product.description}}</p>
+        </div>
+        <div class="panel" ng-show="panel.isSelected(2)">
+          <h4>Specifications</h4>
+          <p>Shine: {{product.shine}}</p>
+        </div>
+        <div class="panel" ng-repeat="review in product.reviews" ng-show="panel.isSelected(3)">
+          <h4>Reviews</h4>
+          <p>Stars:{{review["stars"]}} <br/>Review: {{review["body"]}}<br/>
+            From: {{review["author"]}}<br/>Date: {{review["createdOn"] | date:"MM/dd/yyyy @ h:mma"}}
+          </p>
+        </div>
+      </section>
+    </li>
+   </ul>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+</body>
+</html>

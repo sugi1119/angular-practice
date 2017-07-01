@@ -17,9 +17,9 @@
       </h3>
       <!-- image gallery -->
       <!-- ng-show : if true =>show -->
-      <div class="gallery" ng-show=product.images.length>
+      <div class="gallery" ng-show="product.images.length" ng-controller="GalleryController as gallery">
         <div class="img-wrap">
-          <img ng-src={{product.images[0]}}/>
+          <img ng-src={{product.images[gallery.current]}}/>
         </div>
         <ul class="img-thumbnail clearfix">
           <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">

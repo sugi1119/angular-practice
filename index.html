@@ -49,11 +49,20 @@
           <h4>Specifications</h4>
           <p>Shine: {{product.shine}}</p>
         </div>
-        <div class="panel" ng-repeat="review in product.reviews" ng-show="panel.isSelected(3)">
-          <h4>Reviews</h4>
-          <p>Stars:{{review["stars"]}} <br/>Review: {{review["body"]}}<br/>
-            From: {{review["author"]}}<br/>Date: {{review["createdOn"] | date:"MM/dd/yyyy @ h:mma"}}
-          </p>
+        <div class="panel" ng-show="panel.isSelected(3)">
+          <!-- product reviews list -->
+          <ul>
+            <h4>Reviews</h4>
+            <li ng-repeat = "review in product.reviews">
+              <blockquote>
+                <strong>{{review.stars}} Stars </strong>
+                {{review.body}}
+                 <cite class="clearfix">—{{review.author}}</cite>
+                  {{review.createdOn | date:"MM/dd/yyyy @ h:mma"}}
+              </blockquote>
+          </li>
+          </ul>
+
         </div>
       </section>
     </li>

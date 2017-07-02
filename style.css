@@ -1,6 +1,10 @@
-/*li.small-image{
+li.small-image{
   width: 20%;
-}*/
+}
+
+ul {
+  list-style:none;
+}
 
 section{
   margin-top: 0.5em;
